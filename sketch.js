@@ -8,12 +8,10 @@ function preload() {
 
 function gotDetections(err, results) {
   if (err) {
-    console.log(err);
+    alert(err);
   }
 
   detections = [...results];
-
-  alert("hi");
 
   objectDetector.detect(video, gotDetections);
 }
