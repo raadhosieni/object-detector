@@ -24,5 +24,6 @@ function gotDetections(err, results) {
     stroke(0, 255, 0);
     strokeWeight(3);
     rect(object.x, object.y, boject.width, object.height);
+    alert(object.label);
   }
 }
