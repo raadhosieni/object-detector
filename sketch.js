@@ -1,9 +1,7 @@
 let objectDetector;
 let video;
-let myResults;
 
 function preload() {
-  video = createCapture(VIDEO);
   objectDetector = ml5.objectDetector("cocossd", {}, modelLoaded);
 }
 
@@ -18,28 +16,27 @@ function gotDetections(err, results) {
     console.log(err);
   }
 
-  myResults = results;
+  results.forEach((element) => {
+    stroke(0, 255, 0);
+    strokeWeight(4);
+    noFill();
+    rect(element.x, element.y, element.width, element.height);
+    noStroke();
+    fill(255);
+    textSize(18);
+    text(element.label, element.x + element.width / 2, element.y + 20);
+  });
 
   objectDetector.detect(video, gotDetections);
 }
 
 function setup() {
   createCanvas(600, 400);
+  video = createCapture(VIDEO);
+  video.size(600, 400);
+  objectDetector.detect(video, gotDetections);
 }
 
 function draw() {
   image(video, 0, 0);
-
-  if (myResults) {
-    myResults.forEach((element) => {
-      stroke(0, 255, 0);
-      strokeWeight(4);
-      noFill();
-      rect(element.x, element.y, element.width, element.height);
-      noStroke();
-      fill(255);
-      textSize(18);
-      text(element.label, element.x + element.width / 2, element.y + 20);
-    });
-  }
 }
