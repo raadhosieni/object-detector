@@ -11,7 +11,7 @@ function gotDetections(err, results) {
     console.log(err);
   }
 
-  detections = results;
+  detections = [...results];
 
   alert(detections[0].label);
 
