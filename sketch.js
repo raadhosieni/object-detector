@@ -33,6 +33,7 @@ function gotDetections(err, results) {
 function setup() {
   createCanvas(600, 400);
   video = createCapture(VIDEO);
+  video.hide();
   video.size(600, 400);
   objectDetector.detect(video, gotDetections);
 }
