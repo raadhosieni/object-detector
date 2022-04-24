@@ -27,6 +27,8 @@ function gotDetections(err, results) {
     textSize(18);
     text(element.label, element.x + element.width / 2, element.y + 20);
   });
+
+  objectDetector.detect(video, gotDetections);
 }
 
 function setup() {
@@ -35,5 +37,4 @@ function setup() {
 
 function draw() {
   image(video, 0, 0);
-  objectDetector.detect(video, gotDetections);
 }
