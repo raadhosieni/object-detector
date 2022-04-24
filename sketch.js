@@ -11,7 +11,7 @@ function gotDetections(err, results) {
     console.log(err);
   }
 
-  detections = [...results];
+  detections = results;
 
   objectDetector.detect(video, gotDetections);
 }
