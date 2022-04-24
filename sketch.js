@@ -13,6 +13,8 @@ function gotDetections(err, results) {
 
   detections = results;
 
+  alert(detections[0].label);
+
   objectDetector.detect(video, gotDetections);
 }
 
