@@ -1,33 +1,28 @@
 let objectDetector;
 let video;
-let x, y, w, h;
-
-function modelLoaded() {
-  objectDetector.detect(video, (err, results) => {
-    x = results[0].x;
-    y = results[0].y;
-    w = results[0].width;
-    h = results[0].height;
-  });
-}
 
 function setup() {
   createCanvas(600, 400);
   video = createCapture(VIDEO);
   video.hide();
-  objectDetector = ml5.objectDetector("cocossd", {}, modelLoaded);
+  objectDetector = ml5.objectDetector("cocossd");
 }
 
 function draw() {
   image(video, 0, 0, width, height);
-  noFill();
-  stroke(0);
-  strokeWeight(3);
-  rect(x, y, 50, 50);
-  objectDetector.detect(video, (err, results) => {
-    x = results[0].x;
-    y = results[0].y;
-    w = results[0].width;
-    h = results[0].height;
-  });
+  objectDetector.detect(video, gotDetections);
+}
+
+function gotDetections(err, results) {
+  if (err) {
+    console.log(err);
+  }
+
+  for (let i = 0; i < results.length; i++) {
+    const object = results[i];
+    noFill();
+    stroke(0, 255, 0);
+    strokeWeight(3);
+    rect(object.x, object.y, boject.width, object.height);
+  }
 }
