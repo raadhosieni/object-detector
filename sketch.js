@@ -3,12 +3,16 @@ let video;
 let detections = [];
 
 function preload() {
-  objectDetector = ml5.objectDetector("cocossd");
+  objectDetector = ml5.objectDetector("cocossd", {}, loadedModel);
+}
+
+function loadedModel() {
+  objectDetector.detect(video, gotDetections);
 }
 
 function gotDetections(err, results) {
   if (err) {
-    alert(err);
+    console.log(err);
   }
 
   detections = [...results];
@@ -21,7 +25,6 @@ function setup() {
   video = createCapture(VIDEO);
   video.hide();
   video.size(600, 400);
-  objectDetector.detect(video, gotDetections);
 }
 
 function draw() {
