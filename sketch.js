@@ -1,9 +1,10 @@
 let objectDetector;
 let video;
 let detections = [];
+let videoLoaded = false;
 
 function preload() {
-  objectDetector = ml5.objectDetector("cocossd", {}, loadedModel);
+  objectDetector = ml5.objectDetector("cocossd");
 }
 
 function loadedModel() {
@@ -17,8 +18,6 @@ function gotDetections(err, results) {
 
   detections = [...results];
 
-  alert(detections[0].label);
-
   objectDetector.detect(video, gotDetections);
 }
 
@@ -31,6 +30,11 @@ function setup() {
 
 function draw() {
   image(video, 0, 0);
+
+  if (!videoLoaded && video.loadedmetadata) {
+    objectDetector.detect(video, gotDetections);
+    videoLoaded = true;
+  }
 
   detections.forEach((element) => {
     stroke(0, 255, 0);
