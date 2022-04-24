@@ -12,10 +12,12 @@ function loadedModel() {
 
 function gotDetections(err, results) {
   if (err) {
-    console.log(err);
+    alert(err);
   }
 
   detections = [...results];
+
+  alert(detections[0].label);
 
   objectDetector.detect(video, gotDetections);
 }
