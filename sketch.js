@@ -25,11 +25,11 @@ function draw() {
   stroke(0);
   strokeWeight(3);
   rect(x, y, 50, 50);
-  objectDetector.detect(video, (err, results) => {
-    console.log(results);
-    x = results[0].x;
-    y = results[0].y;
-    w = results[0].width;
-    h = results[0].height;
-  });
+  // objectDetector.detect(video, (err, results) => {
+  //   console.log(results);
+  //   x = results[0].x;
+  //   y = results[0].y;
+  //   w = results[0].width;
+  //   h = results[0].height;
+  // });
 }
