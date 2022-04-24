@@ -3,7 +3,7 @@ let video;
 
 function preload() {
   objectDetector = ml5.objectDetector("cocossd", {}, modelLoaded);
-  video = loadImage("cat-dog.jpeg");
+  video = createCapture(VIDEO);
 }
 
 function modelLoaded() {
