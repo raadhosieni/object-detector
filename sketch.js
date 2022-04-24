@@ -21,7 +21,9 @@ function setup() {
   createCanvas(600, 400);
   video.hide();
   video.size(600, 400);
-  objectDetector.detect(video, gotDetections);
+  if (video.loadedmetadata) {
+    objectDetector.detect(video, gotDetections);
+  }
 }
 
 function draw() {
